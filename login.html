@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBIT Coding Club Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5D190C;   /* Dark red */
+            --secondary: #EF6014; /* Orange */
+            --accent: #F0B619;    /* Yellow */
+            --light: #F5F5F5;     /* Light gray */
+            --dark: #FFFFFF;      /* White */
+            --shadow: rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark), var(--light));
+            color: var(--primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        /* Banner */
+        .banner {
+            width: 100%;
+            background: var(--primary);
+            padding: 20px;
+            text-align: center;
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        .banner img {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+            transition: transform 0.3s ease;
+        }
+
+        .banner img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--primary);
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            animation: rotate 4s infinite linear;
+        }
+
+        .logo span {
+            color: var(--accent);
+            font-size: 1.6rem;
+            font-weight: 600;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--accent);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-toggle:hover {
+            transform: rotate(90deg);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            justify-content: center; /* Ensure horizontal alignment by default */
+            transition: max-height 0.3s ease-in-out;
+            background: var(--primary); /* Ensure background consistency */
+        }
+
+        .nav-menu a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            background: #D85F97;
+            color: var(--dark);
+            transform: scale(1.05);
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--accent);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        .login-btn {
+            background: #D85F97;
+            color: var(--dark);
+            padding: 8px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .login-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        /* Form Container */
+        .form-container {
+            max-width: 600px;
+            width: 90%;
+            margin: 30px auto;
+            padding: 35px;
+            background: var(--dark);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            border: 2px solid var(--secondary);
+            animation: fadeIn 1s ease-in-out;
+            flex-grow: 1;
+        }
+
+        .form-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .form-title i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-field label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-field label i {
+            color: var(--secondary);
+        }
+
+        .form-field input,
+        .form-field select {
+            padding: 12px;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--light);
+            transition: var(--transition);
+        }
+
+        .form-field input:focus,
+        .form-field select:focus {
+            border-color: #D85F97;
+            box-shadow: 0 0 6px rgba(216, 95, 151, 0.5);
+            outline: none;
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+
+        .terms a {
+            color: #D85F97;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .terms a:hover {
+            color: var(--secondary);
+        }
+
+        .submit-btn {
+            padding: 12px;
+            background: var(--primary);
+            color: var(--accent);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .switch-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+
+        .switch-link a {
+            color: #D85F97;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .switch-link a:hover {
+            color: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            padding: 40px 20px;
+            margin-top: auto;
+            border-top: 3px solid var(--secondary);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            max-width: 150px;
+            height: auto;
+            transition: var(--transition);
+        }
+
+        .footer-logo img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .footer-text {
+            font-size: 1.1em;
+            color: var(--accent);
+        }
+
+        .footer-text a {
+            color: #D85F97;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-text a:hover {
+            color: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        /* Dark Theme */
+        body.dark-theme {
+            background: linear-gradient(135deg, var(--primary), #2D2D2D);
+            color: var(--accent);
+        }
+
+        body.dark-theme .banner,
+        body.dark-theme .navbar,
+        body.dark-theme .footer {
+            background: var(--primary);
+        }
+
+        body.dark-theme .nav-menu a,
+        body.dark-theme .theme-btn,
+        body.dark-theme .footer-text,
+        body.dark-theme .form-title,
+        body.dark-theme .form-field label,
+        body.dark-theme .switch-link {
+            color: var(--accent);
+        }
+
+        body.dark-theme .login-btn {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        body.dark-theme .login-btn:hover {
+            background: #D85F97;
+        }
+
+        body.dark-theme .form-container {
+            background: #3A1008;
+            border-color: var(--accent);
+        }
+
+        body.dark-theme .form-field input,
+        body.dark-theme .form-field select {
+            background: #4A1A10;
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        body.dark-theme .submit-btn {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        body.dark-theme .submit-btn:hover {
+            background: #D85F97;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 10px 15px;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--primary);
+                box-shadow: 0 2px 10px var(--shadow);
+            }
+
+            .nav-menu.active {
+                max-height: 300px;
+                padding: 15px 0;
+            }
+
+            .right-section {
+                gap: 10px;
+            }
+
+            .form-container {
+                padding: 25px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo span {
+                font-size: 1.2rem;
+            }
+
+            .form-title {
+                font-size: 1.5rem;
+            }
+
+            .form-field input,
+            .form-field select,
+            .submit-btn {
+                font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--primary);
+        box-shadow: 0 2px 10px var(--shadow);
+    }
+
+    .nav-menu.active {
+        max-height: 300px;
+        padding: 15px 0;
+    }
+}
+/* CSS */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #5D190D, #EF6014);
+    position: relative;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.logo-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.code-symbol {
+    color: white;
+    font-size: 1.8rem;
+    font-family: monospace;
+    animation: codeSpin 8s linear infinite;
+}
+
+.logo-text {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: #5D190D;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logo-text span:first-child {
+    color: #EF6014;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes codeSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+    </style>
+</head>
+<body>
+    <!-- Banner -->
+    <header class="banner">
+        <img src="https://cbit.edu.in/wp-content/uploads/2023/06/logo-cbit-new-1-600x102.jpg" 
+             alt="CBIT College Banner">
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo-container">
+            <div class="logo">
+                <div class="logo-inner">
+                    <div class="code-symbol">{&lt;/&gt;}</div>
+                </div>
+            </div>
+            <div class="logo-text">
+                <span>Coders'</span><br>
+                <span>Club</span>
+            </div>
+        </a>
+        <div class="right-section">
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+            <a href="./login.html" class="login-btn">Login</a>
+            <button class="nav-toggle" id="nav-toggle">☰</button>
+        </div>
+    </nav>
+
+    <nav class="nav-section">
+        <ul class="nav-menu">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./event.html">Events</a></li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./team.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Login Form -->
+    <section class="form-container" id="login-form-container">
+        <h1 class="form-title">
+            <i class="fas fa-user"></i> CBIT Coding Club Login
+        </h1>
+        <form id="login-form" class="form">
+            <div class="form-field">
+                <label for="login-username">
+                    <i class="fas fa-user"></i> Username
+                </label>
+                <input type="text" id="login-username" name="username" required>
+            </div>
+            <div class="form-field">
+                <label for="login-password">
+                    <i class="fas fa-lock"></i> Password
+                </label>
+                <input type="password" id="login-password" name="password" required>
+            </div>
+            <button type="submit" class="submit-btn">Sign In</button>
+            <p class="switch-link">
+                Don't have an account? <a href="#" id="show-register">Register here</a>
+            </p>
+        </form>
+    </section>
+
+    <!-- Register Form -->
+    <section class="form-container" id="register-form-container" style="display: none;">
+        <h1 class="form-title">
+            <i class="fas fa-user-plus"></i> CBIT Coding Club Registration
+        </h1>
+        <form id="register-form" class="form">
+            <div class="form-field">
+                <label for="full-name">
+                    <i class="fas fa-user"></i> Full Name
+                </label>
+                <input type="text" id="full-name" name="fullName" required>
+            </div>
+            <div class="form-field">
+                <label for="roll-no">
+                    <i class="fas fa-id-card"></i> Roll No
+                </label>
+                <input type="text" id="roll-no" name="rollNo" required>
+            </div>
+            <div class="form-field">
+                <label for="gender">
+                    <i class="fas fa-venus-mars"></i> Gender
+                </label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="branch">
+                    <i class="fas fa-code-branch"></i> Branch
+                </label>
+                <select id="branch" name="branch" required>
+                    <option value="">Select Branch</option>
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="MECH">MECH</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="semester">
+                    <i class="fas fa-calendar-alt"></i> Semester
+                </label>
+                <select id="semester" name="semester" required>
+                    <option value="">Select Semester</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="college-name">
+                    <i class="fas fa-school"></i> College Name
+                </label>
+                <input type="text" id="college-name" name="collegeName" value="CBIT" readonly required>
+            </div>
+            <div class="form-field">
+                <label for="location">
+                    <i class="fas fa-map-marker-alt"></i> Location
+                </label>
+                <input type="text" id="location" name="location" required>
+            </div>
+            <div class="form-field">
+                <label for="email">
+                    <i class="fas fa-envelope"></i> Email
+                </label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-field">
+                <label for="phone">
+                    <i class="fas fa-phone"></i> Phone
+                </label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-field">
+                <label for="reg-password">
+                    <i class="fas fa-lock"></i> Password
+                </label>
+                <input type="password" id="reg-password" name="password" required>
+            </div>
+            <div class="form-field">
+                <label for="confirm-password">
+                    <i class="fas fa-lock"></i> Confirm Password
+                </label>
+                <input type="password" id="confirm-password" name="confirmPassword" required>
+            </div>
+            <div class="form-field terms">
+                <label>
+                    <input type="checkbox" id="agree-terms" name="agreeTerms" required>
+                    I agree to the <a href="#">terms and conditions</a>
+                </label>
+            </div>
+            <button type="submit" class="submit-btn">Register</button>
+            <p class="switch-link">
+                Already have an account? <a href="#" id="show-login">Login here</a>
+            </p>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://cbit.edu.in/wp-content/uploads/2023/05/cbit.png" alt="College Logo">
+            </div>
+            <div class="footer-right">
+                <p class="footer-text">
+                    © 2025 Copyright by <a href="#" target="_blank">Shinob Systems</a>. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            themeToggle.textContent = body.classList.contains('dark-theme') ? '☀️' : '🌙';
+        });
+
+        // Navbar Toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Form Toggle
+        const loginContainer = document.getElementById('login-form-container');
+        const registerContainer = document.getElementById('register-form-container');
+        const showRegister = document.getElementById('show-register');
+        const showLogin = document.getElementById('show-login');
+
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginContainer.style.display = 'none';
+            registerContainer.style.display = 'block';
+        });
+
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+        });
+
+        // Login Form Submission
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value;
+            alert(`Logged in as ${username}`);
+            e.target.reset();
+        });
+
+        // Register Form Submission
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = document.getElementById('reg-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const fullName = document.getElementById('full-name').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            if (!document.getElementById('agree-terms').checked) {
+                alert("You must agree to the terms and conditions!");
+                return;
+            }
+
+            alert(`Registered successfully as ${fullName}`);
+            e.target.reset();
+            registerContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+        });
+        const logo = document.querySelector('.logo');
+logo.addEventListener('mouseover', () => {
+    logo.style.animation = 'logoFloat 1s ease-in-out';
+});
+
+logo.addEventListener('mouseout', () => {
+    logo.style.animation = 'logoFloat 3s ease-in-out infinite';
+});
+    </script>
+</body>
+</html>

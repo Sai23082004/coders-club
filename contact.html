@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - CBIT Coders Club</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5D190C;
+            --secondary: #EF6014;
+            --accent: #F0B619;
+            --light: #F5F5F5;
+            --dark: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark), var(--light));
+            color: var(--primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        /* Banner */
+        .banner-container {
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--primary);
+            min-height: 150px;
+            animation: bannerPulse 3s infinite ease-in-out;
+        }
+
+        @keyframes bannerPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .banner-image {
+            width: 100%;
+            height: auto;
+            max-width: 1200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .banner-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            animation: spin 4s infinite linear;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo span {
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        .login-btn {
+            background-color: #D85F97;
+            color: var(--dark);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: var(--secondary);
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Nav Section */
+        .nav-section {
+            background-color: var(--primary);
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #D85F97;
+            color: var(--dark);
+            transform: scale(1.1);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: var(--light);
+            overflow: hidden;
+        }
+
+        .heading-container {
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, var(--primary), #2D2D2D);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: slideInDown 1s ease-in-out;
+        }
+
+        .heading-container h1 {
+            font-size: 36px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .heading-container p {
+            font-size: 18px;
+            color: #D85F97;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .contact-info, .feedback-form {
+            flex: 1;
+            background-color: var(--dark);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-info:hover, .feedback-form:hover {
+            transform: translateY(-10px);
+        }
+
+        .contact-info .info-item {
+            margin-bottom: 30px;
+            text-align: left;
+            animation: fadeUp 0.5s ease-out forwards;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        .contact-info .info-item i {
+            font-size: 28px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-info .info-item:hover i {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .contact-info .info-item h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .contact-info .info-item p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .contact-info iframe {
+            border-radius: 10px;
+            margin-top: 10px;
+            width: 100%;
+            height: 250px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-info iframe:hover {
+            transform: scale(1.02);
+        }
+
+        .feedback-form h2 {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        .feedback-form .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+            animation: fadeUp 0.5s ease-out forwards;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        .feedback-form label {
+            display: block;
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .feedback-form input, .feedback-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #f9f9f9;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feedback-form input:focus, .feedback-form textarea:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 8px rgba(239, 96, 20, 0.3);
+            outline: none;
+        }
+
+        .feedback-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: var(--dark);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        .main-footer {
+            background: var(--primary);
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top: 3px solid var(--secondary);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            max-width: 150px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-logo img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .copyright {
+            font-size: 1.1em;
+            color: var(--accent);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .copyright a {
+            color: #D85F97;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .copyright a:hover {
+            color: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        /* Dark Theme */
+        body.dark-theme {
+            background: linear-gradient(135deg, var(--primary), #2D2D2D);
+            color: var(--accent);
+        }
+
+        body.dark-theme .navbar,
+        body.dark-theme .nav-section,
+        body.dark-theme .heading-container {
+            background: linear-gradient(135deg, var(--primary), #2D2D2D);
+        }
+
+        body.dark-theme .theme-btn {
+            color: #D85F97;
+        }
+
+        body.dark-theme .login-btn {
+            background-color: var(--secondary);
+        }
+
+        body.dark-theme .login-btn:hover {
+            background-color: #D85F97;
+        }
+
+        body.dark-theme .contact-info,
+        body.dark-theme .feedback-form {
+            background-color: #3A1008;
+        }
+
+        body.dark-theme .feedback-form input,
+        body.dark-theme .feedback-form textarea {
+            background: #4A1A10;
+            color: var(--accent);
+            border-color: #555;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInDown {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            0% { opacity: 0; transform: translateX(-50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .contact-info, .feedback-form {
+                width: 100%;
+            }
+
+            .contact-info iframe {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .heading-container h1 {
+                font-size: 28px;
+            }
+
+            .heading-container p {
+                font-size: 16px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+        }
+        .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #5D190D, #EF6014);
+    position: relative;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.logo-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.code-symbol {
+    color: white;
+    font-size: 1.8rem;
+    font-family: monospace;
+    animation: codeSpin 8s linear infinite;
+}
+
+.logo-text {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: #5D190D;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logo-text span:first-child {
+    color: #EF6014;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes codeSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+    </style>
+</head>
+<body>
+    <!-- Banner -->
+    <div class="banner-container">
+        <img src="https://cbit.edu.in/wp-content/uploads/2023/06/logo-cbit-new-1-600x102.jpg" 
+             alt="CBIT College Banner" 
+             class="banner-image">
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo-container">
+            <div class="logo">
+                <div class="logo-inner">
+                    <div class="code-symbol">{&lt;/&gt;}</div>
+                </div>
+            </div>
+            <div class="logo-text">
+                <span>Coders'</span><br>
+                <span>Club</span>
+            </div>
+        </a>
+        <div class="right-section">
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+            <a href="./login.html" class="login-btn">Login</a>
+        </div>
+    </nav>
+
+    <nav class="nav-section">
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./event.html">Events</a></li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./team.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="heading-container">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you! Reach out for queries or feedback.</p>
+        </div>
+
+        <div class="contact-container">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="info-item" style="--i: 1;">
+                    <i class="fas fa-map-marker-alt fa-bounce"></i>
+                    <h3>Address</h3>
+                    <p>CBIT College, Gandipet, Hyderabad, Telangana - 500075</p>
+                </div>
+                <div class="info-item" style="--i: 2;">
+                    <i class="fas fa-envelope fa-shake"></i>
+                    <h3>Email</h3>
+                    <p>codersclub@cbit.ac.in</p>
+                </div>
+                <div class="info-item" style="--i: 3;">
+                    <i class="fas fa-phone fa-pulse"></i>
+                    <h3>Phone</h3>
+                    <p>+91 98765 43210</p>
+                </div>
+                <div class="info-item" style="--i: 4;">
+                    <i class="fas fa-map-marked-alt fa-spin"></i>
+                    <h3>Location</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.962315060705!2d78.32486931487667!3d17.41281798805904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93f5d5f7f5d5%3A0x4f5f5f5f5f5f5f5f!2sCBIT%20College!5e0!3m2!1sen!2sin!4v1631531234567!5m2!1sen!2sin" 
+                            width="100%" 
+                            height="250" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Feedback Form -->
+            <div class="feedback-form">
+                <h2><i class="fas fa-comment-dots fa-beat"></i> Feedback Form</h2>
+                <form action="#" method="POST">
+                    <div class="form-group" style="--i: 1;">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group" style="--i: 2;">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group" style="--i: 3;">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group" style="--i: 4;">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Enter your message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="https://cbit.edu.in/wp-content/uploads/2023/05/cbit.png" alt="College Logo">
+            </div>
+            <div class="footer-right">
+                <p class="copyright">
+                    © 2025 Copyright by <a href="#" target="_blank">Shinob Systems</a>. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.info-item, .form-group').forEach((item, index) => {
+            item.style.setProperty('--i', index + 1);
+            observer.observe(item);
+        });
+        const logo = document.querySelector('.logo');
+logo.addEventListener('mouseover', () => {
+    logo.style.animation = 'logoFloat 1s ease-in-out';
+});
+
+logo.addEventListener('mouseout', () => {
+    logo.style.animation = 'logoFloat 3s ease-in-out infinite';
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coders' Club Teams</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5D190C;
+            --secondary: #EF6014;
+            --accent: #F0B619;
+            --light: #F5F5F5;
+            --dark: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark), var(--light));
+            color: var(--primary);
+            line-height: 1.6;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Banner */
+        .banner-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--primary);
+            min-height: 150px;
+            overflow: hidden;
+            animation: bannerPulse 3s infinite ease-in-out;
+        }
+
+        @keyframes bannerPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .banner-image {
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .banner-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            animation: spin 4s infinite linear;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo span {
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        .login-btn {
+            background: #D85F97;
+            color: var(--dark);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        /* Nav Section */
+        .nav-section {
+            background: var(--primary);
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .nav-links li {
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #D85F97;
+            color: var(--dark);
+            transform: scale(1.1);
+        }
+
+        /* Main Heading */
+        .main-heading {
+            text-align: center;
+            font-size: 36px;
+            color: var(--primary);
+            margin: 30px 0;
+            animation: fadeIn 1.5s ease-in-out;
+            text-shadow: 1px 1px 3px var(--shadow);
+        }
+
+        /* Team Buttons */
+        .team-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 0 auto 2rem;
+            max-width: 1200px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 20px;
+            background: var(--light);
+            box-shadow: 0 2px 10px var(--shadow);
+            border-radius: 10px;
+        }
+
+        .team-buttons::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .team-buttons::-webkit-scrollbar-track {
+            background: var(--light);
+            border-radius: 4px;
+        }
+
+        .team-buttons::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .team-buttons::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        .team-btn {
+            background: var(--dark);
+            border: 2px solid var(--primary);
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .team-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        .team-btn.active {
+            background: var(--secondary);
+            color: var(--dark);
+            border-color: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        /* Team Sections */
+        .team-section {
+            display: none;
+            padding: 30px;
+            background: var(--dark);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin: 0 auto 20px;
+            max-width: 1200px;
+        }
+
+        .team-section.active {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .member-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .member-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid var(--secondary);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .member-card:hover .member-image {
+            transform: scale(1.1) rotate(5deg);
+            border-color: var(--accent);
+        }
+
+        .member-card h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .member-card p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .social-icon {
+            font-size: 22px;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--secondary);
+            transform: scale(1.3) rotate(10deg);
+        }
+
+        .about-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .about-btn:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .about-btn i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .about-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--dark);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px var(--shadow);
+            animation: zoomIn 0.3s ease-out;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--secondary);
+            transform: rotate(90deg);
+        }
+
+        .modal-content h2 {
+            font-size: 26px;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .modal-content p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        .main-footer {
+            background: var(--primary);
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top: 3px solid var(--secondary);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            max-width: 150px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-logo img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .copyright {
+            font-size: 1.1em;
+            color: var(--accent);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .copyright a {
+            color: #D85F97;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .copyright a:hover {
+            color: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        /* Dark Theme */
+        body.dark-theme {
+            background: linear-gradient(135deg, var(--primary), #2D2D2D);
+            color: var(--accent);
+        }
+
+        body.dark-theme .navbar,
+        body.dark-theme .nav-section,
+        body.dark-theme .main-footer {
+            background: var(--primary);
+        }
+
+        body.dark-theme .team-section,
+        body.dark-theme .member-card,
+        body.dark-theme .modal-content {
+            background: #3A1008;
+        }
+
+        body.dark-theme .team-btn {
+            background: #3A1008;
+            color: var(--accent);
+        }
+
+        body.dark-theme .team-btn:hover,
+        body.dark-theme .team-btn.active {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        body.dark-theme .social-icon,
+        body.dark-theme .member-card h3,
+        body.dark-theme .modal-content h2 {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes zoomIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .team-buttons {
+                justify-content: flex-start;
+                padding: 10px;
+            }
+
+            .main-heading {
+                font-size: 28px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .member-card {
+                padding: 15px;
+            }
+
+            .member-image {
+                width: 100px;
+                height: 100px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+        }
+        .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #5D190D, #EF6014);
+    position: relative;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.logo-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.code-symbol {
+    color: white;
+    font-size: 1.8rem;
+    font-family: monospace;
+    animation: codeSpin 8s linear infinite;
+}
+
+.logo-text {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: #5D190D;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logo-text span:first-child {
+    color: #EF6014;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes codeSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+    </style>
+</head>
+<body>
+    <!-- Banner -->
+    <div class="banner-container">
+        <img src="https://cbit.edu.in/wp-content/uploads/2023/06/logo-cbit-new-1-600x102.jpg" 
+             alt="CBIT College Banner" 
+             class="banner-image">
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo-container">
+            <div class="logo">
+                <div class="logo-inner">
+                    <div class="code-symbol">{&lt;/&gt;}</div>
+                </div>
+            </div>
+            <div class="logo-text">
+                <span>Coders'</span><br>
+                <span>Club</span>
+            </div>
+        </a>
+        <div class="right-section">
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+            <a href="./login.html" class="login-btn">Login</a>
+        </div>
+    </nav>
+
+    <nav class="nav-section">
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./event.html">Events</a></li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./team.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <h1 class="main-heading">Welcome to Coders' Club</h1>
+
+    <div class="team-buttons">
+        <button class="team-btn active" onclick="showTeam('organising')"><i class="fas fa-users fa-beat"></i> Organising Team</button>
+        <button class="team-btn" onclick="showTeam('technical')"><i class="fas fa-code fa-pulse"></i> Technical Team</button>
+        <button class="team-btn" onclick="showTeam('designing')"><i class="fas fa-paint-brush fa-shake"></i> Designing Team</button>
+        <button class="team-btn" onclick="showTeam('social-media')"><i class="fas fa-share-alt fa-bounce"></i> Social Media Team</button>
+    </div>
+
+    <!-- Organising Team -->
+    <section id="organising" class="team-section active">
+        <div class="members-grid">
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80" alt="John Doe" class="member-image">
+                <h3>John Doe</h3>
+                <p>Roll No: 2024CSE001</p>
+                <p>Club President</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/johndoe" target="_blank" class="social-icon"><i class="fab fa-instagram fa-spin-hover"></i></a>
+                    <a href="https://linkedin.com/in/johndoe" target="_blank" class="social-icon"><i class="fab fa-linkedin fa-spin-hover"></i></a>
+                </div>
+                <button class="about-btn" onclick="showModal('john')">About <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80" alt="Jane Smith" class="member-image">
+                <h3>Jane Smith</h3>
+                <p>Roll No: 2024CSE002</p>
+                <p>Vice President</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/janesmith" target="_blank" class="social-icon"><i class="fab fa-instagram fa-spin-hover"></i></a>
+                    <a href="https://linkedin.com/in/janesmith" target="_blank" class="social-icon"><i class="fab fa-linkedin fa-spin-hover"></i></a>
+                </div>
+                <button class="about-btn" onclick="showModal('jane')">About <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Team -->
+    <section id="technical" class="team-section">
+        <div class="members-grid">
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80" alt="Alex Johnson" class="member-image">
+                <h3>Alex Johnson</h3>
+                <p>Roll No: 2024CSE003</p>
+                <p>Lead Developer</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/alexjohnson" target="_blank" class="social-icon"><i class="fab fa-instagram fa-spin-hover"></i></a>
+                    <a href="https://linkedin.com/in/alexjohnson" target="_blank" class="social-icon"><i class="fab fa-linkedin fa-spin-hover"></i></a>
+                </div>
+                <button class="about-btn" onclick="showModal('alex')">About <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1487412723647-3b35b2e36233?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80" alt="Sarah Lee" class="member-image">
+                <h3>Sarah Lee</h3>
+                <p>Roll No: 2024CSE004</p>
+                <p>Backend Developer</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/sarahlee" target="_blank" class="social-icon"><i class="fab fa-instagram fa-spin-hover"></i></a>
+                    <a href="https://linkedin.com/in/sarahlee" target="_blank" class="social-icon"><i class="fab fa-linkedin fa-spin-hover"></i></a>
+                </div>
+                <button class="about-btn" onclick="showModal('sarah')">About <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Designing Team -->
+    <section id="designing" class="team-section">
+        <div class="members-grid">
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80" alt="Mike Brown" class="member-image">
+                <h3>Mike Brown</h3>
+                <p>Roll No: 2024CSE005</p>
+                <p>UI/UX Designer</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/mikebrown" target="_blank" class="social-icon"><i class="fab fa-instagram fa-spin-hover"></i></a>
+                    <a href="https://linkedin.com/in/mikebrown" target="_blank" class="social-icon"><i class="fab fa-linkedin fa-spin-hover"></i></a>
+                </div>
+                <button class="about-btn" onclick="showModal('mike')">About <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1522556189639-b1509e838ba3?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80" alt="Emily Davis" class="member-image">
+                <h3>Emily Davis</h3>
+                <p>Roll No: 2024CSE006</p>
+                <p>Graphic Designer</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/emilydavis" target="_blank" class="social-icon"><i class="fab fa-instagram fa-spin-hover"></i></a>
+                    <a href="https://linkedin.com/in/emilydavis" target="_blank" class="social-icon"><i class="fab fa-linkedin fa-spin-hover"></i></a>
+                </div>
+                <button class="about-btn" onclick="showModal('emily')">About <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Team -->
+    <section id="social-media" class="team-section">
+        <div class="members-grid">
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80" alt="Tom Wilson" class="member-image">
+                <h3>Tom Wilson</h3>
+                <p>Roll No: 2024CSE007</p>
+                <p>Content Creator</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/tomwilson" target="_blank" class="social-icon"><i class="fab fa-instagram fa-spin-hover"></i></a>
+                    <a href="https://linkedin.com/in/tomwilson" target="_blank" class="social-icon"><i class="fab fa-linkedin fa-spin-hover"></i></a>
+                </div>
+                <button class="about-btn" onclick="showModal('tom')">About <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80" alt="Lisa Clark" class="member-image">
+                <h3>Lisa Clark</h3>
+                <p>Roll No: 2024CSE008</p>
+                <p>Social Media Lead</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/lisaclark" target="_blank" class="social-icon"><i class="fab fa-instagram fa-spin-hover"></i></a>
+                    <a href="https://linkedin.com/in/lisaclark" target="_blank" class="social-icon"><i class="fab fa-linkedin fa-spin-hover"></i></a>
+                </div>
+                <button class="about-btn" onclick="showModal('lisa')">About <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="memberModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">×</span>
+            <h2 id="modalName"></h2>
+            <p id="modalRoll"></p>
+            <p id="modalPosition"></p>
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="https://cbit.edu.in/wp-content/uploads/2023/05/cbit.png" alt="College Logo">
+            </div>
+            <div class="footer-right">
+                <p class="copyright">
+                    © 2025 Copyright by <a href="#" target="_blank">Shinob Systems</a>. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Team Switching
+        function showTeam(teamId) {
+            document.querySelectorAll('.team-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.team-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const selectedSection = document.getElementById(teamId);
+            selectedSection.classList.add('active');
+            event.target.classList.add('active');
+            
+            // Animate member cards when team changes
+            selectedSection.querySelectorAll('.member-card').forEach((card, index) => {
+                card.style.animation = `bounce 0.5s ease ${index * 0.1}s`;
+            });
+        }
+
+        // Modal Functionality
+        const memberData = {
+            'john': { name: 'John Doe', roll: '2024CSE001', position: 'Club President', description: 'Experienced leader with 2 years of experience in managing club activities and events.' },
+            'jane': { name: 'Jane Smith', roll: '2024CSE002', position: 'Vice President', description: 'Skilled in event coordination and team management, passionate about coding.' },
+            'alex': { name: 'Alex Johnson', roll: '2024CSE003', position: 'Lead Developer', description: 'Expert in full-stack development with a focus on innovative solutions.' },
+            'sarah': { name: 'Sarah Lee', roll: '2024CSE004', position: 'Backend Developer', description: 'Specializes in server-side technologies and database management.' },
+            'mike': { name: 'Mike Brown', roll: '2024CSE005', position: 'UI/UX Designer', description: 'Creative designer with a knack for user-friendly interfaces.' },
+            'emily': { name: 'Emily Davis', roll: '2024CSE006', position: 'Graphic Designer', description: 'Talented in creating visually appealing graphics for club promotions.' },
+            'tom': { name: 'Tom Wilson', roll: '2024CSE007', position: 'Content Creator', description: 'Produces engaging content to boost club visibility online.' },
+            'lisa': { name: 'Lisa Clark', roll: '2024CSE008', position: 'Social Media Lead', description: 'Strategist behind the club’s social media presence and engagement.' }
+        };
+
+        function showModal(memberId) {
+            const modal = document.getElementById('memberModal');
+            const data = memberData[memberId];
+            document.getElementById('modalName').textContent = data.name;
+            document.getElementById('modalRoll').textContent = `Roll No: ${data.roll}`;
+            document.getElementById('modalPosition').textContent = data.position;
+            document.getElementById('modalDescription').textContent = data.description;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('memberModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('memberModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.member-card').forEach(card => {
+            observer.observe(card);
+        });
+        // JavaScript for logo interaction
+const logo = document.querySelector('.logo');
+logo.addEventListener('mouseover', () => {
+    logo.style.animation = 'logoFloat 1s ease-in-out';
+});
+
+logo.addEventListener('mouseout', () => {
+    logo.style.animation = 'logoFloat 3s ease-in-out infinite';
+});
+    </script>
+</body>
+</html>

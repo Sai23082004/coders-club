@@ -1,0 +1,1165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBIT Coders Club</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5D190C;
+            --secondary: #EF6014;
+            --accent: #F0B619;
+            --light: #F5F5F5;
+            --dark: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark), var(--light));
+            color: var(--primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Banner */
+        .banner-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--primary);
+            min-height: 150px;
+            overflow: hidden;
+            animation: bannerPulse 3s infinite ease-in-out;
+        }
+
+        @keyframes bannerPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .banner-image {
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .banner-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            position: relative;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        .logo-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .code-symbol {
+            color: var(--dark);
+            font-size: 1.8rem;
+            font-family: monospace;
+            animation: codeSpin 8s linear infinite;
+        }
+
+        .logo-text {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .logo-text span:first-child {
+            color: var(--secondary);
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        .login-btn {
+            background: #D85F97;
+            color: var(--dark);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        /* Nav Section */
+        .nav-section {
+            background: var(--primary);
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .nav-links li {
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #D85F97;
+            color: var(--dark);
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-family: 'Roboto', sans-serif;
+            text-shadow: 2px 2px 4px var(--shadow);
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            font-style: italic;
+            color: #D85F97;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Section Styling */
+        .objectives-section, .whats-in-section, .testimonials-section, 
+        .developers-section, .privacy-section, .section-container {
+            padding: 50px 20px;
+            text-align: center;
+            background: var(--light);
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            animation: slideUp 1s ease-in-out;
+        }
+
+        .heading-container {
+            background: var(--primary);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px var(--shadow);
+            border: 2px solid var(--secondary);
+        }
+
+        .heading-container h1, .heading-container h2 {
+            font-size: 36px;
+            color: var(--accent);
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Content Container */
+        .content-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--dark);
+            border-radius: 10px;
+            border: 2px solid #D85F97;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .text-content {
+            flex: 1;
+            padding-right: 20px;
+            text-align: left;
+        }
+
+        .text-content h2 {
+            font-size: 28px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .text-content p {
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .text-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .text-content ul li {
+            margin: 10px 0;
+            font-size: 16px;
+            color: var(--primary);
+            padding-left: 20px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .text-content ul li:hover {
+            color: #D85F97;
+        }
+
+        .text-content ul li::before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .image-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #D85F97;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-content img:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        /* Scroll Cards */
+        .scroll-cards {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .card {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            width: 300px;
+            background: var(--dark);
+            border-radius: 10px;
+            border: 2px solid var(--secondary);
+            box-shadow: 0 5px 15px var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #D85F97;
+        }
+
+        .card-content h3 {
+            font-size: 24px;
+            color: var(--primary);
+            margin: 15px 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .card-content ul {
+            list-style: none;
+            padding: 0 15px 15px;
+        }
+
+        .card-content ul li {
+            font-size: 14px;
+            color: var(--primary);
+            margin: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .card-content ul li::before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Testimonials & Developers */
+        .testimonials-container, .developers-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .testimonials, .developers {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        .testimonials::-webkit-scrollbar, .developers::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card, .developer-card {
+            flex: 0 0 auto;
+            width: 300px;
+            background: var(--dark);
+            border-radius: 10px;
+            border: 2px solid #D85F97;
+            box-shadow: 0 5px 15px var(--shadow);
+            padding: 20px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .developer-card {
+            width: 200px;
+            text-align: center;
+        }
+
+        .testimonial-card:hover, .developer-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .testimonial-card p, .developer-card p {
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .testimonial-card h4, .developer-card h3 {
+            font-size: 18px;
+            color: var(--secondary);
+            margin: 0 0 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .developer-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 2px solid var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .developer-card img:hover {
+            transform: rotate(10deg);
+        }
+
+        .developer-card button {
+            background: var(--primary);
+            color: var(--accent);
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .developer-card button:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        .scroll-button {
+            background: var(--primary);
+            color: var(--accent);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .scroll-button:hover {
+            background: #D85F97;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .scroll-button.left {
+            left: -20px;
+        }
+
+        .scroll-button.right {
+            right: -20px;
+        }
+
+        /* Chain Container */
+        .chain-container {
+            overflow-x: auto;
+            padding: 40px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .chain-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            min-width: max-content;
+        }
+
+        .chain-item {
+            position: relative;
+            min-width: 300px;
+            padding: 30px;
+            margin: 0 50px;
+            background: var(--dark);
+            border-radius: 15px;
+            border: 2px solid var(--accent);
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .chain-item:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+
+        .chain-icon {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            animation: bounce 1.5s infinite;
+        }
+
+        .chain-item h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .chain-item p {
+            font-size: 16px;
+            color: var(--primary);
+        }
+
+        .chain-link {
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 10px;
+            background: #D85F97;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        .main-footer {
+            background: var(--primary);
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top: 3px solid var(--secondary);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            max-width: 150px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-logo img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .copyright {
+            font-size: 1.1em;
+            color: var(--accent);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .copyright a {
+            color: #D85F97;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .copyright a:hover {
+            color: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        /* Dark Theme */
+        body.dark-theme {
+            background: linear-gradient(135deg, var(--primary), #2D2D2D);
+            color: var(--accent);
+        }
+
+        body.dark-theme .navbar,
+        body.dark-theme .nav-section,
+        body.dark-theme .main-footer,
+        body.dark-theme .heading-container {
+            background: var(--primary);
+        }
+
+        body.dark-theme .theme-btn {
+            color: #D85F97;
+        }
+
+        body.dark-theme .login-btn {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        body.dark-theme .login-btn:hover {
+            background: #D85F97;
+        }
+
+        body.dark-theme .objectives-section,
+        body.dark-theme .whats-in-section,
+        body.dark-theme .testimonials-section,
+        body.dark-theme .developers-section,
+        body.dark-theme .privacy-section,
+        body.dark-theme .section-container {
+            background: #3A1008;
+        }
+
+        body.dark-theme .content-container,
+        body.dark-theme .card,
+        body.dark-theme .testimonial-card,
+        body.dark-theme .developer-card,
+        body.dark-theme .chain-item {
+            background: #4A1A10;
+        }
+
+        body.dark-theme .text-content p,
+        body.dark-theme .card-content h3,
+        body.dark-theme .card-content ul li,
+        body.dark-theme .testimonial-card p,
+        body.dark-theme .developer-card p,
+        body.dark-theme .chain-item h3,
+        body.dark-theme .chain-item p {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes codeSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .banner-image {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .banner-container {
+                min-height: 100px;
+            }
+
+            .content-container {
+                flex-direction: column;
+            }
+
+            .text-content {
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .image-content img {
+                max-width: 80%;
+            }
+
+            .scroll-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+
+            .testimonials, .developers {
+                gap: 10px;
+            }
+
+            .testimonial-card {
+                width: 250px;
+            }
+
+            .developer-card {
+                width: 180px;
+            }
+
+            .scroll-button {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+
+            .scroll-button.left {
+                left: -10px;
+            }
+
+            .scroll-button.right {
+                right: -10px;
+            }
+
+            .chain-item {
+                min-width: 250px;
+                margin: 0 30px;
+            }
+
+            .chain-link {
+                right: -40px;
+                width: 30px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-logo {
+                margin-bottom: 20px;
+            }
+
+            .copyright {
+                font-size: 0.9em;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+        /* CSS */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #5D190D, #EF6014);
+    position: relative;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.logo-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.code-symbol {
+    color: white;
+    font-size: 1.8rem;
+    font-family: monospace;
+    animation: codeSpin 8s linear infinite;
+}
+
+.logo-text {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: #5D190D;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logo-text span:first-child {
+    color: #EF6014;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes codeSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+    </style>
+</head>
+<body>
+    <div class="banner-container">
+        <img src="https://cbit.edu.in/wp-content/uploads/2023/06/logo-cbit-new-1-600x102.jpg" 
+             alt="CBIT College Banner" 
+             class="banner-image">
+    </div>
+
+    <nav class="navbar">
+        <a href="#" class="logo-container">
+            <div class="logo">
+                <div class="logo-inner">
+                    <div class="code-symbol">{}</div>
+                </div>
+            </div>
+            <div class="logo-text">
+                <span>Coders'</span><br>
+                <span>Club</span>
+            </div>
+        </a>
+        <div class="right-section">
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+            <a href="./login.html" class="login-btn">Login</a>
+        </div>
+    </nav>
+
+    <nav class="nav-section">
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./event.html">Events</a></li>
+            <li><a href="./gallery.html">Gallery</a></li>
+            <li><a href="./team.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Welcome to the CBIT Coding Club</h1>
+            <p>"Coding is not just about writing lines of code; it's about solving problems and creating solutions."</p>
+        </div>
+    </section>
+
+    <section class="objectives-section">
+        <div class="heading-container">
+            <h1>def Connect (Hard-work) -> Result : return Success;</h1>
+        </div>
+        <div class="content-container">
+            <div class="text-content">
+                <h2>Our Objectives</h2>
+                <p>Coders Club objectives are to empower the students to:</p>
+                <ul>
+                    <li>Solve problems using Math, Data structures & Algorithms.</li>
+                    <li>Write correct, efficient and elegant code.</li>
+                    <li>Crack the coding interviews at product based companies.</li>
+                    <li>Participate in Hackathons.</li>
+                    <li>Conduct Coding Competitions for Students.</li>
+                </ul>
+            </div>
+            <div class="image-content">
+                <img src="https://www.codersclubgprec.in/images/section2.png" alt="Objectives Image">
+            </div>
+        </div>
+    </section>
+
+    <section class="whats-in-section">
+        <div class="heading-container">
+            <h2>What's in Coders Club?</h2>
+        </div>
+        <div class="scroll-cards">
+            <div class="card">
+                <img src="https://www.codersclubgprec.in/images/maths.jpeg" alt="Mathematics">
+                <div class="card-content">
+                    <h3>BASIC-PRO Mathematics</h3>
+                    <ul>
+                        <li>Basic Math</li>
+                        <li>Permutations</li>
+                        <li>Combinations</li>
+                        <li>Medians</li>
+                        <li>Logarithms</li>
+                        <li>Equations</li>
+                        <li>Arithmetic Progression</li>
+                        <li>Geometric Progression</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://www.codersclubgprec.in/images/data%20structures.jpeg" alt="Data Structures">
+                <div class="card-content">
+                    <h3>BASIC-PRO Data Structures</h3>
+                    <ul>
+                        <li>Array</li>
+                        <li>Linked List</li>
+                        <li>Stack and Queue</li>
+                        <li>Min & Max Heap</li>
+                        <li>Hash Table</li>
+                        <li>Trie & BST</li>
+                        <li>Map (Hash Table or BST)</li>
+                        <li>Set (Hash Table or BST)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://www.codersclubgprec.in/images/algorithm.jpg" alt="Algorithms">
+                <div class="card-content">
+                    <h3>BASIC-PRO Algorithms</h3>
+                    <ul>
+                        <li>Big O notation</li>
+                        <li>Recursion</li>
+                        <li>Sorting and Searching</li>
+                        <li>Traversals BF & DF</li>
+                        <li>Dynamic Programming</li>
+                        <li>Divide & Conquer</li>
+                        <li>Greedy Approach</li>
+                        <li>Bit Manipulation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="heading-container">
+            <h2>Testimonials</h2>
+        </div>
+        <div class="testimonials-container">
+            <button class="scroll-button left" onclick="scrollTestimonials(-1)">❮</button>
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <p>"The event was exceptionally well-organized."</p>
+                    <h4>- Mohammad Saif</h4>
+                    <p>Student at CBIT</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"A new taste of coding has been experienced."</p>
+                    <h4>- John Doe</h4>
+                    <p>Student at CBIT</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Overall the event was very good."</p>
+                    <h4>- Jane Smith</h4>
+                    <p>Student at CBIT</p>
+                </div>
+            </div>
+            <button class="scroll-button right" onclick="scrollTestimonials(1)">❯</button>
+        </div>
+    </section>
+
+    <section class="developers-section">
+        <div class="heading-container">
+            <h2>Website Designers & Developers</h2>
+        </div>
+        <div class="developers-container">
+            <button class="scroll-button left" onclick="scrollDevelopers(-1)">❮</button>
+            <div class="developers">
+                <div class="developer-card">
+                    <img src="https://via.placeholder.com/150" alt="Developer 1">
+                    <h3>John Doe</h3>
+                    <p>Frontend Developer</p>
+                    <button>About</button>
+                </div>
+                <div class="developer-card">
+                    <img src="https://via.placeholder.com/150" alt="Developer 2">
+                    <h3>Jane Smith</h3>
+                    <p>Backend Developer</p>
+                    <button>About</button>
+                </div>
+                <div class="developer-card">
+                    <img src="https://via.placeholder.com/150" alt="Developer 3">
+                    <h3>Alice Johnson</h3>
+                    <p>UI/UX Designer</p>
+                    <button>About</button>
+                </div>
+            </div>
+            <button class="scroll-button right" onclick="scrollDevelopers(1)">❯</button>
+        </div>
+    </section>
+
+    <section class="privacy-section">
+        <div class="heading-container">
+            <h2>Data Privacy</h2>
+        </div>
+        <div class="content-container">
+            <div class="text-content">
+                <p>At Coders Club, we prioritize your privacy and security with advanced encryption.</p>
+            </div>
+            <div class="image-content">
+                <img src="https://www.codersclubgprec.in/images/section4.png" alt="Data Privacy">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <div class="heading-container">
+            <h2>Follow us to gain more knowledge</h2>
+        </div>
+        <div class="chain-container">
+            <div class="chain-track">
+                <div class="chain-item">
+                    <div class="chain-icon"><i class="fas fa-calendar-alt fa-3x"></i></div>
+                    <h3>Events</h3>
+                    <p>50+ Coding Events</p>
+                    <div class="chain-link"></div>
+                </div>
+                <div class="chain-item">
+                    <div class="chain-icon"><i class="fas fa-eye fa-3x"></i></div>
+                    <h3>Views</h3>
+                    <p>100K+ Monthly Views</p>
+                    <div class="chain-link"></div>
+                </div>
+                <div class="chain-item">
+                    <div class="chain-icon"><i class="fas fa-users fa-3x"></i></div>
+                    <h3>Users</h3>
+                    <p>5000+ Active Members</p>
+                    <div class="chain-link"></div>
+                </div>
+                <div class="chain-item">
+                    <div class="chain-icon"><i class="fas fa-award fa-3x"></i></div>
+                    <h3>Benefits</h3>
+                    <p>20+ Career Benefits</p>
+                    <div class="chain-link"></div>
+                </div>
+                <!-- Duplicated for infinite scroll -->
+                <div class="chain-item">
+                    <div class="chain-icon"><i class="fas fa-calendar-alt fa-3x"></i></div>
+                    <h3>Events</h3>
+                    <p>50+ Coding Events</p>
+                    <div class="chain-link"></div>
+                </div>
+                <div class="chain-item">
+                    <div class="chain-icon"><i class="fas fa-eye fa-3x"></i></div>
+                    <h3>Views</h3>
+                    <p>100K+ Monthly Views</p>
+                    <div class="chain-link"></div>
+                </div>
+                <div class="chain-item">
+                    <div class="chain-icon"><i class="fas fa-users fa-3x"></i></div>
+                    <h3>Users</h3>
+                    <p>5000+ Active Members</p>
+                    <div class="chain-link"></div>
+                </div>
+                <div class="chain-item">
+                    <div class="chain-icon"><i class="fas fa-award fa-3x"></i></div>
+                    <h3>Benefits</h3>
+                    <p>20+ Career Benefits</p>
+                    <div class="chain-link"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="https://cbit.edu.in/wp-content/uploads/2023/05/cbit.png" alt="College Logo">
+            </div>
+            <div class="footer-right">
+                <p class="copyright">
+                    © 2025 Copyright by <a href="#" target="_blank">Shinob Systems</a>. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            themeToggle.textContent = body.classList.contains('dark-theme') ? '☀️' : '🌙';
+        });
+
+        // Scroll Functions
+        function scrollTestimonials(direction) {
+            const testimonialsContainer = document.querySelector('.testimonials');
+            const scrollAmount = 300;
+            testimonialsContainer.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        function scrollDevelopers(direction) {
+            const developersContainer = document.querySelector('.developers');
+            const scrollAmount = 300;
+            developersContainer.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        // Infinite Scroll for Chain
+        const track = document.querySelector('.chain-track');
+        track.addEventListener('mouseenter', () => {
+            track.style.animationPlayState = 'paused';
+        });
+
+        track.addEventListener('mouseleave', () => {
+            track.style.animationPlayState = 'running';
+        });
+
+        // Logo Animation on Hover
+        const logo = document.querySelector('.logo');
+        logo.addEventListener('mouseover', () => {
+            logo.style.animation = 'logoFloat 1s ease-in-out';
+        });
+
+        logo.addEventListener('mouseout', () => {
+            logo.style.animation = 'logoFloat 3s ease-in-out infinite';
+        });
+        // JavaScript for logo interaction
+const logo = document.querySelector('.logo');
+logo.addEventListener('mouseover', () => {
+    logo.style.animation = 'logoFloat 1s ease-in-out';
+});
+
+logo.addEventListener('mouseout', () => {
+    logo.style.animation = 'logoFloat 3s ease-in-out infinite';
+});
+    </script>
+</body>
+</html>
