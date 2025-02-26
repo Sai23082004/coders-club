@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* General Reset */
         * {
             margin: 0;
             padding: 0;
@@ -20,6 +19,7 @@
             --accent: #F0B619;
             --light: #F5F5F5;
             --dark: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.1);
         }
 
         body {
@@ -30,14 +30,13 @@
             line-height: 1.6;
         }
 
-        /* Banner */
         .banner-container {
             width: 100%;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: var(--primary);
+            background-color: var(--shadow);
             min-height: 150px;
             animation: bannerPulse 3s infinite ease-in-out;
         }
@@ -50,7 +49,7 @@
         .banner-image {
             width: 100%;
             height: auto;
-            max-width: 1200px;
+            max-width: 800px;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
@@ -59,7 +58,6 @@
             transform: scale(1.05);
         }
 
-        /* Navbar */
         .navbar {
             background-color: var(--primary);
             display: flex;
@@ -72,27 +70,65 @@
             z-index: 1000;
         }
 
-        .logo {
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            text-decoration: none;
         }
 
-        .logo img {
-            width: 40px;
-            height: 40px;
-            animation: spin 4s infinite linear;
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #5D190D, #EF6014);
+            position: relative;
+            animation: logoFloat 3s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
+        .logo:hover {
+            animation: logoFloat 1s ease-in-out infinite;
         }
 
-        .logo span {
-            color: var(--accent);
-            font-size: 1.5rem;
+        .logo-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .code-symbol {
+            color: white;
+            font-size: 1.8rem;
+            font-family: monospace;
+            animation: codeSpin 8s linear infinite;
+        }
+
+        .logo-text {
+            font-family: 'Arial', sans-serif;
             font-weight: bold;
-            font-family: 'Roboto', sans-serif;
+            color: #5D190D;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span:first-child {
+            color: #EF6014;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes codeSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .right-section {
@@ -132,7 +168,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Nav Section */
         .nav-section {
             background-color: var(--primary);
             padding: 10px 0;
@@ -165,7 +200,6 @@
             transform: scale(1.1);
         }
 
-        /* Contact Section */
         .contact-section {
             padding: 50px 20px;
             text-align: center;
@@ -330,7 +364,6 @@
             transform: translateX(5px);
         }
 
-        /* Footer */
         .main-footer {
             background: var(--primary);
             padding: 40px 20px;
@@ -374,7 +407,6 @@
             transform: scale(1.1);
         }
 
-        /* Dark Theme */
         body.dark-theme {
             background: linear-gradient(135deg, var(--primary), #2D2D2D);
             color: var(--accent);
@@ -410,7 +442,6 @@
             border-color: #555;
         }
 
-        /* Animations */
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -431,7 +462,6 @@
             100% { opacity: 1; transform: translateX(0); }
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .contact-container {
                 flex-direction: column;
@@ -461,75 +491,68 @@
                 gap: 20px;
             }
         }
-        .logo-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    text-decoration: none;
+        .nav-section {
+    background-color: var(--primary);
+    padding: 10px 0;
+    text-align: center;
 }
 
-.logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #5D190D, #EF6014);
-    position: relative;
-    animation: logoFloat 3s ease-in-out infinite;
-}
-
-.logo-inner {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+.nav-links {
+    list-style: none;
     display: flex;
     justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
 }
 
-.code-symbol {
-    color: white;
-    font-size: 1.8rem;
-    font-family: monospace;
-    animation: codeSpin 8s linear infinite;
+.nav-links li {
+    margin: 5px 15px;
 }
 
-.logo-text {
-    font-family: 'Arial', sans-serif;
+.nav-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 18px;
     font-weight: bold;
-    color: #5D190D;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-.logo-text span:first-child {
-    color: #EF6014;
+.nav-links a:hover {
+    background-color: #D85F97;
+    color: var(--dark);
+    transform: scale(1.1);
 }
 
-@keyframes logoFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
+@media (max-width: 502px) {
+    .nav-links {
+        flex-direction: row;
+        padding: 0 10px;
+    }
 
-@keyframes codeSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    .nav-links li {
+        margin: 5px 10px;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
 }
     </style>
 </head>
 <body>
-    <!-- Banner -->
     <div class="banner-container">
         <img src="https://cbit.edu.in/wp-content/uploads/2023/06/logo-cbit-new-1-600x102.jpg" 
              alt="CBIT College Banner" 
              class="banner-image">
     </div>
 
-    <!-- Navbar -->
     <nav class="navbar">
         <a href="#" class="logo-container">
             <div class="logo">
                 <div class="logo-inner">
-                    <div class="code-symbol">{&lt;/&gt;}</div>
+                    <div class="code-symbol">{}</div>
                 </div>
             </div>
             <div class="logo-text">
@@ -538,7 +561,7 @@
             </div>
         </a>
         <div class="right-section">
-            <button id="theme-toggle" class="theme-btn">🌙</button>
+            <button id="theme-toggle" class="theme-btn" aria-label="Toggle dark theme">🌙</button>
             <a href="./login.html" class="login-btn">Login</a>
         </div>
     </nav>
@@ -553,7 +576,6 @@
         </ul>
     </nav>
 
-    <!-- Contact Section -->
     <section class="contact-section">
         <div class="heading-container">
             <h1>Contact Us</h1>
@@ -561,7 +583,6 @@
         </div>
 
         <div class="contact-container">
-            <!-- Contact Info -->
             <div class="contact-info">
                 <div class="info-item" style="--i: 1;">
                     <i class="fas fa-map-marker-alt fa-bounce"></i>
@@ -581,7 +602,7 @@
                 <div class="info-item" style="--i: 4;">
                     <i class="fas fa-map-marked-alt fa-spin"></i>
                     <h3>Location</h3>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.962315060705!2d78.32486931487667!3d17.41281798805904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93f5d5f7f5d5%3A0x4f5f5f5f5f5f5f5f!2sCBIT%20College!5e0!3m2!1sen!2sin!4v1631531234567!5m2!1sen!2sin" 
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.962315060705!2d78.31724531487667!3d17.39126598805904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93f5d5f7f5d5%3A0x4c9e07e7b5e5e5e5!2sChaitanya+Bharathi+Institute+of+Technology!5e0!3m2!1sen!2sin!4v1698765432100!5m2!1sen!2sin" 
                             width="100%" 
                             height="250" 
                             style="border:0;" 
@@ -591,10 +612,9 @@
                 </div>
             </div>
 
-            <!-- Feedback Form -->
             <div class="feedback-form">
                 <h2><i class="fas fa-comment-dots fa-beat"></i> Feedback Form</h2>
-                <form action="#" method="POST">
+                <form action="/submit-feedback" method="POST">
                     <div class="form-group" style="--i: 1;">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -617,7 +637,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-logo">
@@ -625,7 +644,7 @@
             </div>
             <div class="footer-right">
                 <p class="copyright">
-                    © 2025 Copyright by <a href="#" target="_blank">Shinob Systems</a>. All rights reserved.
+                    © <span id="year"></span> Copyright by <a href="#" target="_blank">Shinob Systems</a>. All rights reserved.
                 </p>
             </div>
         </div>
@@ -633,9 +652,14 @@
 
     <script>
         // Theme Toggle
-        document.getElementById('theme-toggle').addEventListener('click', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
+            themeToggle.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
         });
+
+        // Dynamic Year
+        document.getElementById('year').textContent = new Date().getFullYear();
 
         // Intersection Observer for animations
         const observer = new IntersectionObserver((entries) => {
@@ -651,14 +675,6 @@
             item.style.setProperty('--i', index + 1);
             observer.observe(item);
         });
-        const logo = document.querySelector('.logo');
-logo.addEventListener('mouseover', () => {
-    logo.style.animation = 'logoFloat 1s ease-in-out';
-});
-
-logo.addEventListener('mouseout', () => {
-    logo.style.animation = 'logoFloat 3s ease-in-out infinite';
-});
     </script>
 </body>
 </html>

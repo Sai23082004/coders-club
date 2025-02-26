@@ -38,7 +38,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: var(--primary);
+            background: var(--shadow);
             min-height: 150px;
             overflow: hidden;
             animation: bannerPulse 3s infinite ease-in-out;
@@ -51,7 +51,7 @@
 
         .banner-image {
             width: 100%;
-            max-width: 1200px;
+            max-width: 800px;
             height: auto;
             object-fit: cover;
             transition: transform 0.3s ease;
@@ -589,6 +589,54 @@
 @keyframes codeSpin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+.nav-section {
+    background-color: var(--primary);
+    padding: 10px 0;
+    text-align: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li {
+    margin: 5px 15px;
+}
+
+.nav-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #D85F97;
+    color: var(--dark);
+    transform: scale(1.1);
+}
+
+@media (max-width: 502px) {
+    .nav-links {
+        flex-direction: row;
+        padding: 0 10px;
+    }
+
+    .nav-links li {
+        margin: 5px 10px;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
 }
     </style>
 </head>
